@@ -1,0 +1,38 @@
+<html lang="en">
+
+<body>
+
+    Id : <input type="text" id="myId"> <br>
+    Name : <input type="text" id="myName"> <br>
+    Phone: <input type="text" id="myPhone"> <br>
+    <div id="res"></div>
+    <button type="button" onclick="savephone()">Update</button>
+
+
+    <script>
+        async function savephone() {
+            var aa = document.getElementById('myId').value;
+            var nn = document.getElementById('myName').value;
+            var pp = document.getElementById('myPhone').value;
+
+            user = { username: nn, userphone: pp }
+
+            let options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            }
+
+            let response = await fetch("https://localhost:7228/WeatherForecast/" + aa, options);
+            let myText = await response.text();
+            
+            document.getElementById("res").innerHTML = myText;
+        }
+    </script>
+
+
+</body>
+
+</html>

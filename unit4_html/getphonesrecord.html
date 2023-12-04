@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+
+    <div id="res"></div>
+    <button type="button" onclick="loadDoc()">Request All Phone</button>
+    <table border="1" id="demo"></table>
+
+    <script>
+        async function loadDoc() {
+
+            let myObject = await fetch("https://localhost:7228/WeatherForecast/");
+            let myText = await (myObject.json());
+
+            var table = "<tr><th>Name</th><th>Phone</th></tr>";
+
+            for (i = 0; i < myText.length; i++) {
+                table += "<tr><td>" +
+                    myText[i].username + "</td><td>" +
+                    myText[i].userphone + "</td></tr>";
+            }
+            document.getElementById("demo").innerHTML = table;
+        }
+    </script>
+
+
+</body>
+
+</html>
